@@ -31,18 +31,30 @@ class ProductController extends Controller
     }
 
     public function dashboard() {
-    try {
-        // Fetch data
-        $totalProducts = DB::table('products')->count();
-        $totalValue = DB::table('products')->sum(DB::raw('price * available_stock')) ?? 0;
+    // 1. Basic Stats
+    $totalProducts = DB::table('products')->count();
+    $totalStock = DB::table('products')->sum('available_stock') ?? 0;
+    $totalValue = DB::table('products')->sum(DB::raw('price * available_stock')) ?? 0;
 
-        // Return the view with variables
-        return view('dashboard', compact('totalProducts', 'totalValue'));
-        
-    } catch (\Exception $e) {
-        // This will stop the "white screen" and tell us the real error
-        return "Database Error: " . $e->getMessage();
-    }
+    // 2. Data for Bar Chart: Group stock by Category
+    $stockByCategory = DB::table('products')
+        ->select('category', DB::raw('sum(available_stock) as total'))
+        ->groupBy('category')
+        ->get();
+
+    // 3. Data for Pie Chart: Top 5 products by stock
+    $topProducts = DB::table('products')
+        ->orderBy('available_stock', 'desc')
+        ->limit(5)
+        ->get();
+
+    return view('dashboard', compact(
+        'totalProducts', 
+        'totalStock', 
+        'totalValue', 
+        'stockByCategory', 
+        'topProducts'
+    ));
 }
 
     public function edit($product_id) {

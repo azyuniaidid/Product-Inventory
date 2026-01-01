@@ -5,6 +5,9 @@
     <title>Inventory Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <style>
         body { background: #f5f6fa; font-family: 'Segoe UI', sans-serif; }
         .sidebar { width: 240px; background: linear-gradient(180deg, #4b1fff, #7b2ff7); min-height: 100vh; color: white; position: fixed; }
