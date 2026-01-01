@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-    <h4 class="fw-bold mb-4">Inventory Overview</h4>
+    <h4 class="fw-bold mb-4">Admin Dashboard</h4>
 
     <div class="row g-4 mb-4">
         <div class="col-md-4">
